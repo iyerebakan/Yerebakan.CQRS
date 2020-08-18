@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Yerebakan.CQRS.DependencyInjection;
+using Yerebakan.CQRS.Api.DependencyRegistar;
 
 namespace Yerebakan.CQRS.Api
 {
@@ -20,8 +21,10 @@ namespace Yerebakan.CQRS.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMediatR(typeof(Startup));
             services.CQRSRegisterService();
+            Config.AddCommandHandlers(services);
+            Config.AddQueryHandlers(services);
+            Config.AddEventHandler(services);
             services.AddControllers();
         }
 

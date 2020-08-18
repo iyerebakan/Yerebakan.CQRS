@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using MediatR;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
@@ -14,11 +15,18 @@ namespace Yerebakan.CQRS.DependencyInjection
     {
         public static IServiceCollection CQRSRegisterService(this IServiceCollection services)
         {
+            services.AddMediatR();
             services.AddScoped<IQueryBus, QueryBus>();
             services.AddScoped<ICommandBus, CommandBus>();
             services.AddScoped<IEventBus, EventBus>();
 
             return services;
+        }
+
+        private static void AddMediatR(this IServiceCollection services)
+        {
+            services.AddScoped<IMediator, Mediator>();
+            services.AddTransient<ServiceFactory>(sp => sp.GetService);
         }
     }
 }

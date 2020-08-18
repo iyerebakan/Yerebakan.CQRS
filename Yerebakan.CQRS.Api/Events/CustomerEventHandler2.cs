@@ -11,7 +11,8 @@ namespace Yerebakan.CQRS.Api.Events
     {
         public async Task Handle(CustomerCreated notification, CancellationToken cancellationToken)
         {
-            Console.WriteLine("CustomerEventHandler2 works.!");
+            // Console.WriteLine("CustomerEventHandler2 works.!");
+            throw new Exception();
         }
     }
 }

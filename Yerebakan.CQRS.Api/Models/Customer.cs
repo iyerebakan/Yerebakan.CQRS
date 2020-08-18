@@ -26,7 +26,7 @@ namespace Yerebakan.CQRS.Api.Models
             TaxNo = taxno;
 
             Append(new CustomerCreated(id: id, name: name, title: title, taxNo: taxno));
-            Append(new CustomerCreated(id: id, name: name, title: title, taxNo: taxno));
+            //Append(new CustomerCreated(id: id, name: name, title: title, taxNo: taxno));
         }
     }
 }
